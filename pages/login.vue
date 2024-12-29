@@ -1,5 +1,5 @@
 <template>
-    <div class="min-h-screen bg-gradient-to-br from-red-900 via-red-950 to-black flex items-center justify-center p-4">
+    <div class="min-h-screen bg-gradient-to-br from-blue-900 via-blue-950 to-black flex items-center justify-center p-4">
       <!-- Main Content -->
       <main class="relative flex items-center justify-center p-4 min-h-screen">
         <div class="max-w-md w-full space-y-8 bg-black/50 backdrop-blur-sm p-8 rounded-xl border border-white/10">
@@ -17,7 +17,7 @@
                 v-model="email"
                 type="email"
                 required
-                class="mt-1 block w-full px-3 py-2 bg-black/50 border border-white/20 rounded-md text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent"
+                class="mt-1 block w-full px-3 py-2 bg-black/50 border border-white/20 rounded-md text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
               />
             </div>
   
@@ -28,14 +28,14 @@
                 v-model="password"
                 type="password"
                 required
-                class="mt-1 block w-full px-3 py-2 bg-black/50 border border-white/20 rounded-md text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent"
+                class="mt-1 block w-full px-3 py-2 bg-black/50 border border-white/20 rounded-md text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
               />
             </div>
   
             <div>
               <button
                 type="submit"
-                class="w-full bg-red-600 hover:bg-red-700 text-white rounded-lg px-6 py-3 text-sm font-semibold transition-all duration-300 ease-in-out transform hover:scale-105 hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-opacity-50"
+                class="w-full bg-blue-600 hover:bg-blue-700 text-white rounded-lg px-6 py-3 text-sm font-semibold transition-all duration-300 ease-in-out transform hover:scale-105 hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
               >
                 {{ isLogin ? 'Se connecter' : "S'inscrire" }}
               </button>
