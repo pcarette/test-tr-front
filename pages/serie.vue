@@ -37,20 +37,20 @@
           <div class="bg-black/50 backdrop-blur-sm border border-white/10 rounded-xl p-6 text-center">
             <h2 class="text-3xl font-bold text-white mb-2">Résultats</h2>
             <p class="text-xl text-white">
-              Score: <span class="font-bold">{{ results.score }}/{{ results.realAnswers.length }}</span>
+              Score: <span class="font-bold">{{ results.score }}/{{ results.answers.length }}</span>
             </p>
           </div>
   
           <!-- Questions Review -->
-          <div v-for="(answer, index) in results.realAnswers" :key="answer._id" 
+          <div v-for="(answer, index) in results.answers" :key="answer._id" 
                class="bg-black/50 backdrop-blur-sm border border-white/10 rounded-xl p-6 space-y-4">
             <div class="flex justify-between items-start">
-              <h3 class="text-xl font-semibold text-white">Question {{ answer.numero }}</h3>
+              <h3 class="text-xl font-semibold text-white">Question {{ index + 1 }}</h3>
             </div>
   
             <!-- User's Answers -->
             <div class="space-y-2">
-              <div v-for="(userChoice, choiceIndex) in results.answersByUser[index]" :key="choiceIndex"
+              <div v-for="(userChoice, choiceIndex) in results.inputsByUser[index]" :key="choiceIndex"
                    :class="{
                      'text-green-500': answer.answers.includes(userChoice),
                      'text-red-500': !answer.answers.includes(userChoice)
@@ -59,17 +59,17 @@
                 <span class="mr-2">
                   {{ answer.answers.includes(userChoice) ? '✓' : '✗' }}
                 </span>
-                <span>Réponse {{ userChoice + 1 }}</span>
+                <span>Réponse {{ userChoice + 1 }} : {{results.questions[index].propositions[userChoice]}}</span>
               </div>
             </div>
   
             <!-- Correct Answers (if user missed any) -->
-            <div v-if="!areAnswersCorrect(answer.answers, results.answersByUser[index])" 
+            <div v-if="!areAnswersCorrect(answer.answers, results.inputsByUser[index])" 
                  class="mt-4 p-4 bg-white/10 rounded-lg">
               <p class="text-white text-sm font-medium mb-2">Réponses correctes:</p>
               <div class="text-green-500">
                 <div v-for="correctAnswer in answer.answers" :key="correctAnswer">
-                  Réponse {{ correctAnswer + 1 }}
+                  Réponse {{ correctAnswer + 1 }} : {{results.questions[index].propositions[correctAnswer]}}
                 </div>
               </div>
             </div>
@@ -83,10 +83,10 @@
           <!-- Return Button -->
           <div class="flex justify-center mt-6">
             <button
-              @click="router.push('/')"
+              @click="router.push('/history')"
               class="bg-red-600 hover:bg-red-700 text-white rounded-lg px-6 py-3 text-sm font-semibold transition-all duration-300 ease-in-out transform hover:scale-105 hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-opacity-50"
             >
-              Retour à l'accueil
+              Retour aux séries
             </button>
           </div>
         </div>
@@ -102,38 +102,111 @@
   const user = ref(null)
   const loading = ref(false)
   const error = ref(null)
+  const {BASE_API_URL} = useRuntimeConfig().public
+
   
   // This would typically come from your state management or route params
   // For demo purposes, I'm using the provided JSON directly
   const results = ref({
-    "success": "ok",
-    "realAnswers": [
-      {
-        "_id": "66d459e65228aa243c5e73a4",
-        "numero": 4,
-        "answers": [2],
-        "commentaire": "Hors agglomération, c'est toujours 80 km/h."
-      },
-      {
-        "_id": "66d459595228aa243c5e73a2",
-        "numero": 2,
-        "answers": [1, 3],
-        "commentaire": "Conduire alcoolisé est passible d'une suspension de permis de 6 mois."
-      },
-      {
-        "_id": "66d45af35228aa243c5e73a6",
-        "numero": 1,
-        "answers": [1],
-        "commentaire": "Le panneau STOP a une seule signification, vous devez vous arrêter."
+  "_id": "6772d7ce63d4374571a5f7bf",
+  "questions": [
+    {
+      "_id": "66d49747943e6b63315e739f",
+      "numero": 4,
+      "question": "Hors aglomération, il faut rouler maximum à ...",
+      "propositions": [
+        "50 km.",
+        "80 km.",
+        "110 km."
+      ]
+    },
+    {
+      "_id": "66d49726943e6b63315e739c",
+      "numero": 1,
+      "question": "Quand il y a un STOP, faut il ...",
+      "propositions": [
+        "s'arreter.",
+        "avancer."
+      ]
+    },
+    {
+      "_id": "66d49758943e6b63315e73a0",
+      "numero": 5,
+      "question": "Sur autoroute, il faut rouler maximum à ...",
+      "propositions": [
+        "80 km.",
+        "110 km.",
+        "130 km."
+      ]
+    }
+  ],
+  "user": "67719eccae863aead76dbd41",
+  "inputsByUser": [
+    [
+      1
+    ],
+    [
+      0
+    ],
+    [
+      2
+    ]
+  ],
+  "currentQuestion": 3,
+  "createdAt": "2024-12-30T17:26:38.245Z",
+  "updatedAt": "2024-12-30T17:26:50.712Z",
+  "__v": 0,
+  "score": 3,
+  "answers": [
+    {
+      "_id": "66d459e65228aa243c5e73a4",
+      "numero": 4,
+      "answers": [
+        1
+      ],
+      "commentaire": "Hors agglomération, c'est toujours 80 km/h."
+    },
+    {
+      "_id": "66d45af35228aa243c5e73a6",
+      "numero": 1,
+      "answers": [
+        0
+      ],
+      "commentaire": "Le panneau STOP a une seule signification, vous devez vous arrêter."
+    },
+    {
+      "_id": "66d45a135228aa243c5e73a5",
+      "numero": 5,
+      "answers": [
+        2
+      ],
+      "commentaire": "Sur autoroute, c'est toujours 130 km/h."
+    }
+  ]
+})
+
+  const fetchResults = async (serieId) => {
+  const token = localStorage.getItem('jwt')
+  try {
+    const response = await fetch(`${BASE_API_URL}/datas/serie/${serieId}/`, {
+      headers: {
+        "authorization": `Bearer ${token}`
       }
-    ],
-    "answersByUser": [
-      [2, 1],
-      [0, 2],
-      [0]
-    ],
-    "score": 0
-  })
+    })
+    
+    if (!response.ok) {
+      throw new Error('Impossible de récupérer les résultats')
+    }
+    
+    const data = await response.json()
+    console.log("data : ", data)
+    results.value = data
+    loading.value = false
+  } catch (err) {
+    error.value = err.message
+    loading.value = false
+  }
+}
   
   const areAnswersCorrect = (correctAnswers, userAnswers) => {
     if (!userAnswers) return false
@@ -153,6 +226,7 @@
     }
     
     user.value = JSON.parse(userData)
+    fetchResults("6772d5a063d4374571a5f7a2")
   })
   
   const logout = () => {
