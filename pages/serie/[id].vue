@@ -45,7 +45,7 @@
           <div v-for="(answer, index) in results.answers" :key="answer._id" 
                class="bg-black/50 backdrop-blur-sm border border-white/10 rounded-xl p-6 space-y-4">
             <div class="flex justify-between items-start">
-              <h3 class="text-xl font-semibold text-white">Question {{ index + 1 }}</h3>
+              <h3 class="text-xl font-semibold text-white">Question {{ index + 1 }} : {{ results.questions[index].question }}</h3>
             </div>
   
             <!-- User's Answers -->
