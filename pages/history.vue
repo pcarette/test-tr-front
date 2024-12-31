@@ -4,7 +4,7 @@
       <nav class="fixed w-full z-50 bg-black/50 backdrop-blur-sm border-b border-white/10">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div class="flex items-center justify-between h-16">
-            <div class="flex-shrink-0">
+            <div class="flex-shrink-0 cursor-pointer" @click="goToMenu">
               <h1 class="text-white text-xl font-bold">SafeRoad</h1>
             </div>
             
@@ -36,8 +36,8 @@
                 <div v-for="serie in monthGroup" :key="serie._id.$oid" 
                      class="bg-black/30 rounded-lg p-4 hover:bg-black/40 transition-colors cursor-pointer"
                      @click="redirectToSerie(serie._id)">
-                  <div class="flex justify-between items-center">
-                    <div class="text-white">
+                       <div class="flex justify-between items-center">
+                         <div class="text-white">
                       <div class="font-medium">
                         Série du {{ formatDate(serie.createdAt) }}
                       </div>
@@ -82,7 +82,7 @@
 </template>
 
 <script setup>
-  import { ref, computed, onMounted } from 'vue'
+import { ref, computed, onMounted } from 'vue'
   import { useRouter } from 'vue-router'
   const {BASE_API_URL} = useRuntimeConfig().public
   
@@ -104,7 +104,7 @@
     if (response.status === 401) {
       logout()
     }
-    
+
     await response.json().then(data => {
       series.value = data
     });
@@ -180,5 +180,8 @@
     localStorage.removeItem('jwt')
     localStorage.removeItem('user')
     router.push('/login')
+  }
+  const goToMenu = () => {
+    router.push("/")
   }
   </script>

@@ -4,7 +4,7 @@
       <nav class="fixed w-full z-50 bg-black/50 backdrop-blur-sm border-b border-white/10">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div class="flex items-center justify-between h-16">
-            <div class="flex-shrink-0">
+            <div class="flex-shrink-0 cursor-pointer" @click="goToMenu">
               <h1 class="text-white text-xl font-bold">SafeRoad</h1>
             </div>
             
@@ -99,10 +99,14 @@
   import { useRouter } from 'vue-router'
   
   const router = useRouter()
+  const route = useRoute();
   const user = ref(null)
   const loading = ref(false)
   const error = ref(null)
   const {BASE_API_URL} = useRuntimeConfig().public
+
+  const id = route.params.id
+
 
   
   // This would typically come from your state management or route params
@@ -230,12 +234,16 @@
     }
     
     user.value = JSON.parse(userData)
-    fetchResults("6772d5a063d4374571a5f7a2")
+    fetchResults(id)
   })
   
   const logout = () => {
     localStorage.removeItem('jwt')
     localStorage.removeItem('user')
     router.push('/login')
+  }
+
+  const goToMenu = () => {
+    router.push('/')
   }
   </script>

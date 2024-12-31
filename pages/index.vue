@@ -4,7 +4,7 @@
     <nav class="fixed w-full z-50 bg-black/50 backdrop-blur-sm border-b border-white/10">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex items-center justify-between h-16">
-          <div class="flex-shrink-0">
+          <div class="flex-shrink-0 cursor-pointer" @click="goToMenu">
             <h1 class="text-white text-xl font-bold">SafeRoad</h1>
           </div>
           
@@ -85,5 +85,10 @@ const startNewSeries = () => {
 const viewPastSeries = () => {
   router.push('/history')
 }
+
+const goToMenu = () => {
+  router.push('/')
+}
+
 </script>
 
