@@ -197,6 +197,10 @@
     if (!response.ok) {
       throw new Error('Impossible de récupérer les résultats')
     }
+
+    if (response.status === 401) {
+      logout()
+    }
     
     const data = await response.json()
     console.log("data : ", data)

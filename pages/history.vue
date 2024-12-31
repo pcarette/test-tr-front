@@ -100,6 +100,11 @@
       }
     });
     if (!response.ok) throw new Error('Failed to fetch questions');
+
+    if (response.status === 401) {
+      logout()
+    }
+    
     await response.json().then(data => {
       series.value = data
     });
