@@ -1,5 +1,5 @@
 <template>
-  <div class="min-h-screen bg-gradient-to-br from-blue-900 via-blue-950 to-black relative">
+  <div class="min-h-screen bg-gradient-to-br from-red-900 via-red-950 to-black relative">
     <!-- Navbar -->
     <nav class="fixed w-full z-50 bg-black/50 backdrop-blur-sm border-b border-white/10">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -34,7 +34,7 @@
           <div class="space-y-4">
             <button
               @click="startNewSeries"
-              class="w-full bg-blue-600 hover:bg-blue-700 text-white rounded-lg px-6 py-4 text-lg font-semibold transition-all duration-300 ease-in-out transform hover:scale-105 hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
+              class="w-full bg-red-600 hover:bg-red-700 text-white rounded-lg px-6 py-4 text-lg font-semibold transition-all duration-300 ease-in-out transform hover:scale-105 hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-opacity-50"
             >
               Commencer une nouvelle série
             </button>

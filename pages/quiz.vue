@@ -1,6 +1,6 @@
 <template>
   <div
-    class="min-h-screen bg-gradient-to-br from-blue-900 via-blue-950 to-black"
+    class="min-h-screen bg-gradient-to-br from-red-900 via-red-950 to-black"
   >
     <!-- Navbar -->
     <nav
@@ -53,8 +53,8 @@
                 @click="toggleAnswer(index)"
                 class="w-full text-left px-6 py-4 rounded-lg transition-all"
                 :class="{
-                  'bg-blue-600 text-white': selectedAnswers.includes(index),
-                  'bg-blue-800 text-white hover:bg-gray-700':
+                  'bg-red-600 text-white': selectedAnswers.includes(index),
+                  'bg-red-800 text-white hover:bg-gray-700':
                     !selectedAnswers.includes(index),
                 }"
               >
@@ -65,7 +65,7 @@
             <div class="flex justify-end">
               <button
                 @click="submitAnswer"
-                class="bg-blue-600 hover:bg-blue-700 text-white rounded-lg px-6 py-3 text-sm font-semibold"
+                class="bg-red-600 hover:bg-red-700 text-white rounded-lg px-6 py-3 text-sm font-semibold"
               >
                 {{ isLastQuestion ? "Terminer" : "Question suivante" }}
               </button>
